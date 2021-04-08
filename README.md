@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-|Column         |Type   |Options    |
-|-------------- |-------|---------- |
-|name           |string |null: false|
-|email          |string |null: false|
-|password       |string |null: false|
-|first name     |string |null: false|
-|last name      |string |null: false|
-|first name_kana|string |null: false|
-|last name_kana |string |null: false|
-|birthday       |integer|null: false|
+|Column             |Type   |Options     |
+|------------------ |-------|----------  |
+|name               |string |null: false |
+|email              |string |unique: true|
+|encrypted_password |string |null: false |
+|first_name         |string |null: false |
+|last_name          |string |null: false |
+|first_name_kana    |string |null: false |
+|last_name_kana     |string |null: false |
+|birthday           |date   |null: false |
 
 
 ### Association
@@ -21,52 +21,48 @@
 
 ## items テーブル
 
-|Column             |Type      |Options          |
-|---------------    |-------   |---------------- |
-|image              |string    |null: false      |
-|product name       |string    |null: false      |
-|product description|text      |null: false      |
-|category           |integer   |null: false      |
-|product condition  |integer   |null: false      |
-|shipping charges   |integer   |null: false      |
-|shipping area      |integer   |null: false      |
-|days to ship       |integer   |null: false      |
-|price              |integer   |null: false      |
-|user               |references|foreign_key: true|
+|Column              |Type      |Options          |
+|------------------- |-------   |---------------- |
+|product_name        |string    |null: false      |
+|product_description |text      |null: false      |
+|category_id         |integer   |null: false      |
+|product_condition_id|integer   |null: false      |
+|shipping_charges_id |integer   |null: false      |
+|shipping_area_id    |integer   |null: false      |
+|days_to_ship_id     |integer   |null: false      |
+|price               |integer   |null: false      |
+|user                |references|foreign_key: true|
 
 ### Association
 
-- belongs_to :users
-- has_one :orders
+- belongs_to :user
+- has_one :order
 
 ## orders テーブル
 
-|Column  |Type      |Options    |
-|------  |----------|---------- |
+|Column  |Type      |Options          |
+|------  |----------|--------------   |
 |user    |references|foreign_key: true|
 |item    |references|foreign_key: true|
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one :address
 
 ## address テーブル
 
 |Column          |Type      |Options          |
-|--------------- |------    |--------------   |
-|card information|integer   |null: false      |
-|expiration date |date      |null: false      |
-|security code   |integer   |null: false      |
-|postal code     |integer   |null: false      |
+|--------------- |--------  |--------------   |
+|postal_code     |string    |null: false      |
 |prefectures     |string    |null: false      |
 |municipality    |string    |null: false      |
 |address         |string    |null: false      |
-|Building name   |string    |null: false      |
-|phone number    |integer   |null: false      |
+|Building_name   |string    |                 |
+|phone_number    |string    |null: false      |
 |order           |references|foreign_key: true|
 
 ### Association
 
-- belongs_to :orders
+- belongs_to :order
