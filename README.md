@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-|Column             |Type   |Options     |
-|------------------ |-------|----------  |
-|name               |string |null: false |
-|email              |string |unique: true|
-|encrypted_password |string |null: false |
-|first_name         |string |null: false |
-|last_name          |string |null: false |
-|first_name_kana    |string |null: false |
-|last_name_kana     |string |null: false |
-|birthday           |date   |null: false |
+|Column             |Type   |Options                  |
+|------------------ |-------|------------------------ |
+|name               |string |null: false              |
+|email              |string |null: false, unique: true|
+|encrypted_password |string |null: false              |
+|first_name         |string |null: false              |
+|last_name          |string |null: false              |
+|first_name_kana    |string |null: false              |
+|last_name_kana     |string |null: false              |
+|birthday           |date   |null: false              |
 
 
 ### Association
@@ -56,10 +56,10 @@
 |Column          |Type      |Options          |
 |--------------- |--------  |--------------   |
 |postal_code     |string    |null: false      |
-|prefectures     |string    |null: false      |
+|prefecture_id   |integer   |null: false      |
 |municipality    |string    |null: false      |
 |address         |string    |null: false      |
-|Building_name   |string    |                 |
+|building_name   |string    |                 |
 |phone_number    |string    |null: false      |
 |order           |references|foreign_key: true|
 
