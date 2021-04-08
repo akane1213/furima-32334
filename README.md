@@ -60,7 +60,7 @@
 |expiration date |date      |null: false      |
 |security code   |integer   |null: false      |
 |postal code     |integer   |null: false      |
-|Prefectures     |string    |null: false      |
+|prefectures     |string    |null: false      |
 |municipality    |string    |null: false      |
 |address         |string    |null: false      |
 |Building name   |string    |null: false      |
