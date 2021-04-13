@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
           @user.name = ''
           @user.valid?
           expect(@user.errors.full_messages).to include("Name can't be blank")
-       end
+        end
 
         it 'emailが空では登録できないこと' do
           @user.email = ''
@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
         it '全角では登録できないこと' do
           @user.password = 'あいうえおあ'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+          expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
         end
 
         it '数字のみでは登録できないこと' do
@@ -87,7 +87,7 @@ RSpec.describe User, type: :model do
           @user.first_name = ''
           @user.valid?
           expect(@user.errors.full_messages).to include("First name can't be blank")
-         end
+        end
 
         it 'first_name_kanaがない場合は登録できないこと' do
           @user.first_name_kana = ''
