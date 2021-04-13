@@ -1,4 +1,4 @@
-class FurimasController < ApplicationController
+class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
 
