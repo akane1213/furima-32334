@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :sold_out_item, only: [:index]
 
   def index
-    @orders = OrderAddress.new
+    @order = OrderAddress.new
   end
 
   def create
