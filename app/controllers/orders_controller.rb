@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   end
   
   def order_params
-    params.require(:order_address).permit(:postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number, :order).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_address).permit(:postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def sold_out_item
