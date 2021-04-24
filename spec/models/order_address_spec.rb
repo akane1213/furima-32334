@@ -53,18 +53,18 @@ RSpec.describe OrderAddress, type: :model do
         end
 
         it '郵便番号にはハイフンがないと購入できないこと' do
-          @order.postal_code = ''
+          @order.postal_code = '1234567'
           @order.valid?
           expect(@order.errors.full_messages).to include('Postal code ハイフンを含めてを入力してください')
         end
 
         it '電話番号にハイフンがあると購入できないこと' do
-          @order.phone_number = '-'
+          @order.phone_number = '090-1234-5678'
           @order.valid?
           expect(@order.errors.full_messages).to include('Phone number 11桁以内の数字を入力してください')
         end
 
-        it '電話番号が11字以上では購入できないこと' do
+        it '電話番号が12字以上では購入できないこと' do
           @order.phone_number = '090123456789'
           @order.valid?
           expect(@order.errors.full_messages).to include('Phone number 11桁以内の数字を入力してください')
@@ -82,13 +82,13 @@ RSpec.describe OrderAddress, type: :model do
           expect(@order.errors.full_messages).to include("Token can't be blank")
         end
 
-        it 'user_idが空では登録できないこと' do
+        it 'ユーザー情報がないと登録できないこと' do
           @order.user_id = nil
           @order.valid?
           expect(@order.errors.full_messages).to include("User can't be blank")
         end
 
-        it 'item_idが空だと登録できないが空では登録できないこと' do
+        it '商品情報がないと登録できないこと' do
           @order.item_id = nil
           @order.valid?
           expect(@order.errors.full_messages).to include("Item can't be blank")
