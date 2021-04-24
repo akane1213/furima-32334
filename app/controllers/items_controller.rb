@@ -35,13 +35,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.destroy
   end
 
-
   private
+
   def set_item
     @item = Item.find(params[:id])
   end
@@ -52,8 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if current_user != @item.user || @item.order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user != @item.user || @item.order.present?
   end
 end
