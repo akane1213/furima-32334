@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :item_to_index, only: [:edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.order('created_at DESC')
@@ -35,13 +35,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.destroy
   end
 
-
   private
+
   def set_item
     @item = Item.find(params[:id])
   end
@@ -51,9 +49,7 @@ class ItemsController < ApplicationController
                                  :shipping_area_id, :days_to_ship_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  def item_to_index
-    unless  current_user == @item.user
-      redirect_to root_path
-    end
+  def move_to_index
+    redirect_to root_path if current_user != @item.user || @item.order.present?
   end
 end
